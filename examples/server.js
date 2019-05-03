@@ -44,6 +44,25 @@ app.post('/base/buffer',(req,res)=>{
   })
 })
 
+app.get('/error/get', function(req, res) {
+  if (Math.random() > 0.5) {
+    res.json({
+      msg: `hello world`
+    })
+  } else {
+    res.status(500)
+    res.end()
+  }
+})
+
+app.get('/error/timeout', function(req, res) {
+  setTimeout(() => {
+    res.json({
+      msg: `hello world`
+    })
+  }, 5000)
+})
+
 app.listen(PORT, function() {
   console.log(`server is running at port ${PORT}`)
 })
