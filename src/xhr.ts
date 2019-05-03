@@ -1,6 +1,7 @@
 import { AxiosRequestConfig, AxiosResponse, AxiosResponsePromise } from './types'
 import { headers2Object } from './helpers/headers'
 import { transformResponseData } from './helpers/data'
+import { AxiosError } from './helpers/error'
 
 export default function(config: AxiosRequestConfig): AxiosResponsePromise {
   return new Promise((resolve, reject) => {
@@ -15,10 +16,17 @@ export default function(config: AxiosRequestConfig): AxiosResponsePromise {
     })
     request.open(method.toUpperCase(), url, true)
     request.ontimeout = function() {
-      reject(new Error(`timeout error that more than ${timeout} ms`))
+      reject(
+        new AxiosError(
+          `timeout error that more than ${timeout} ms`,
+          config,
+          'ECONNABORTED',
+          request
+        )
+      )
     }
     request.onerror = function() {
-      reject(new Error('network error'))
+      reject(new AxiosError('Network Error', config, undefined, request))
     }
     request.onreadystatechange = function() {
       if (request.readyState !== 4) return
@@ -26,7 +34,15 @@ export default function(config: AxiosRequestConfig): AxiosResponsePromise {
       if (request.status >= 200 && request.status < 300) {
         resolve(createResponse(request, config))
       } else {
-        reject(new Error(`Request failed with status code ${request.status}`))
+        reject(
+          new AxiosError(
+            `Request failed with status code ${request.status}`,
+            config,
+            undefined,
+            request,
+            createResponse(request, config)
+          )
+        )
       }
     }
     request.send(data)

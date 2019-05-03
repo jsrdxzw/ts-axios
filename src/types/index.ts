@@ -31,3 +31,10 @@ export interface AxiosResponse {
 
 // ajax请求后返回的Promise对象
 export interface AxiosResponsePromise extends Promise<AxiosResponse> {}
+
+export interface IAxiosError extends Error {
+  config: AxiosRequestConfig
+  code?: string
+  request?: XMLHttpRequest
+  response?: AxiosResponse
+}

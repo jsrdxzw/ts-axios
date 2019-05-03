@@ -1,4 +1,4 @@
-import TangYueFan from '../../src/index'
+import TangYueFan,{IAxiosError} from '../../src'
 
 TangYueFan({
   method: 'get',
@@ -35,6 +35,6 @@ TangYueFan({
   timeout: 2000
 }).then((res) => {
   console.log(res)
-}).catch((e) => {
+}).catch((e:IAxiosError) => {
   console.log(e)
 })
