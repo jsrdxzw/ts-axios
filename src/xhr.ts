@@ -1,5 +1,6 @@
 import { AxiosRequestConfig, AxiosResponse, AxiosResponsePromise } from './types'
 import { headers2Object } from './helpers/headers'
+import { transformResponseData } from './helpers/data'
 
 export default function(config: AxiosRequestConfig): AxiosResponsePromise {
   return new Promise(resolve => {
@@ -23,7 +24,7 @@ function createResponse(request: XMLHttpRequest, config: AxiosRequestConfig): Ax
   const { responseType } = config
   return {
     status: request.status,
-    data: responseType !== 'text' ? request.response : request.responseText,
+    data: responseType !== 'text' ? transformResponseData(request.response) : request.responseText,
     statusText: request.statusText,
     headers: headers2Object(request.getAllResponseHeaders()),
     config,
