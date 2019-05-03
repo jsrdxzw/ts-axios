@@ -27,6 +27,23 @@ app.get('/base/get',(req,res)=>{
   res.json(req.query)
 })
 
+app.post('/base/post',(req,res)=>{
+  res.json(req.body)
+})
+
+app.post('/base/buffer',(req,res)=>{
+  const msg = []
+  req.on('data',(chunk)=>{
+    if (chunk){
+      msg.push(chunk)
+    }
+  })
+  req.on('end',()=>{
+    const buffer = Buffer.concat(msg)
+    res.json(buffer.toJSON())
+  })
+})
+
 app.listen(PORT, function() {
   console.log(`server is running at port ${PORT}`)
 })
