@@ -23,6 +23,10 @@ app.get('/simple/get', (req, res) => {
   })
 })
 
+app.get('/base/get',(req,res)=>{
+  res.json(req.query)
+})
+
 app.listen(PORT, function() {
   console.log(`server is running at port ${PORT}`)
 })
