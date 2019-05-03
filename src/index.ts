@@ -6,7 +6,7 @@ import { processHeaders } from './helpers/headers'
 
 function TangYueFan(config: AxiosRequestConfig) {
   processConfig(config)
-  xhr(config)
+  return xhr(config)
 }
 
 function processConfig(config: AxiosRequestConfig): void {

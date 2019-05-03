@@ -59,57 +59,57 @@ import TangYueFan from '../../src/index'
 //   }
 // })
 
-TangYueFan({
-  method: 'post',
-  url: '/base/post',
-  data: {
-    a: 1,
-    b: 2
-  }
-})
-//
-TangYueFan({
-  method: 'post',
-  url: '/base/post',
-  headers: {
-    'content-type': 'application/json;charset=utf-8',
-    'Accept':'application/json'
-  },
-  data: {
-    a: 1,
-    b: 2
-  }
-})
-//
-
-const paramsString = 'q=URLUtils.searchParams&topic=api'
-const searchParams = new URLSearchParams(paramsString)
-
-TangYueFan({
-  method: 'post',
-  url: '/base/post',
-  data: {searchParams}
-})
-
-// axios({
+// TangYueFan({
 //   method: 'post',
 //   url: '/base/post',
 //   data: {
 //     a: 1,
 //     b: 2
 //   }
-// }).then((res) => {
-//   console.log(res)
 // })
-//
-// axios({
+// //
+// TangYueFan({
 //   method: 'post',
 //   url: '/base/post',
-//   responseType: 'json',
+//   headers: {
+//     'content-type': 'application/json;charset=utf-8',
+//     'Accept':'application/json'
+//   },
 //   data: {
-//     a: 3,
-//     b: 4
+//     a: 1,
+//     b: 2
 //   }
-// }).then((res) => {
-//   console.log(res)
 // })
+// //
+//
+// const paramsString = 'q=URLUtils.searchParams&topic=api'
+// const searchParams = new URLSearchParams(paramsString)
+//
+// TangYueFan({
+//   method: 'post',
+//   url: '/base/post',
+//   data: {searchParams}
+// })
+
+TangYueFan({
+  method: 'post',
+  url: '/base/post',
+  data: {
+    a: 1,
+    b: 2
+  }
+}).then((res) => {
+  console.log(res)
+})
+//
+TangYueFan({
+  method: 'post',
+  url: '/base/post',
+  responseType: 'json',
+  data: {
+    a: 3,
+    b: 4
+  }
+}).then((res) => {
+  console.log(res)
+})
