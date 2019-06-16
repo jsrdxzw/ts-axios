@@ -13,7 +13,7 @@ export function transformResponseData(data?: any): object {
     try {
       return JSON.parse(data)
     } catch (e) {
-      // do nothing
+      console.log(`tangyuefan:${e.message}`)
     }
   }
   return data

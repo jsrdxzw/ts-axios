@@ -1,4 +1,4 @@
-import TangYueFan from '../../src/tangyuefan'
+import TangYueFan from '../../src/TangYueFan'
 
 // TangYueFan({
 //   method: 'get',

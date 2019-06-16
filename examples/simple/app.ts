@@ -1,4 +1,4 @@
-import axios from '../../src/tangyuefan'
+import axios from '../../src/TangYueFan'
 
 axios({
   method: 'get',

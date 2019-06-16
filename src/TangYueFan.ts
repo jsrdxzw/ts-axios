@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from './types'
-import xhr from './xhr'
+import xhr from './core/xhr'
 import { buildURL } from './helpers/url'
 import { transformRequestData } from './helpers/data'
 import { processHeaders } from './helpers/headers'

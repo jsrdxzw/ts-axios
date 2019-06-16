@@ -1,20 +1,20 @@
-import { AxiosRequestConfig, AxiosResponse, AxiosResponsePromise } from './types'
-import { headers2Object } from './helpers/headers'
-import { transformResponseData } from './helpers/data'
-import { AxiosError } from './helpers/error'
+import { AxiosRequestConfig, AxiosResponse, AxiosResponsePromise } from '../types'
+import { headers2Object } from '../helpers/headers'
+import { transformResponseData } from '../helpers/data'
+import { AxiosError } from '../helpers/error'
 
 export default function(config: AxiosRequestConfig): AxiosResponsePromise {
   return new Promise((resolve, reject) => {
-    const { url, method = 'get', data, headers, timeout, responseType } = config
+    const { url, method = 'get', data, headers, timeout = 10000, responseType } = config
     const request = new XMLHttpRequest()
     if (responseType) request.responseType = responseType
     if (timeout) {
       request.timeout = timeout
     }
+    request.open(method.toUpperCase(), url!, true)
     Object.keys(headers).forEach(key => {
       request.setRequestHeader(key, headers[key])
     })
-    request.open(method.toUpperCase(), url, true)
     request.ontimeout = function() {
       reject(
         new AxiosError(

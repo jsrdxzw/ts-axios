@@ -12,8 +12,9 @@ function encode(val: string): string {
     .replace(/%5D/g, ']')
 }
 
-export function buildURL(url: string, params?: any): string {
+export function buildURL(url?: string, params?: any): string {
   // 去除url #后面的参数
+  if (!url) return ''
   const indexHashMark = url.indexOf('#')
   let res: string = indexHashMark !== -1 ? url.slice(0, indexHashMark) : url
   if (!params) return res
